@@ -1,0 +1,5 @@
+<zimletConfig name="zimbra-zimlet-signature-template" version="0.0.1">
+    <global>
+        <property name="htmlTemplate">PGRpdj48c3BhbiBzdHlsZT0iY29sb3I6ICNlMDNlMmQ7Ij48c3Ryb25nPk5BTUU8L3N0cm9uZz48L3NwYW4+PC9kaXY+PGRpdj48ZW0+PHNwYW4gc3R5bGU9ImNvbG9yOiAjN2U4YzhkOyI+RlVOQ1RJT048L3NwYW4+PC9lbT48YnIvPjxici8+PGltZyBzcmM9Imh0dHBzOi8vczIyLnE0Y2RuLmNvbS80NzYzMjUxMzcvZmlsZXMvZGVzaWduL3N5bmFjb3ItbG9nby0yMDE2LXJnYi5wbmciPjwvaW1nPjwvZGl2Pgo=</property>
+    </global>
+</zimletConfig>
