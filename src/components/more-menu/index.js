@@ -34,7 +34,7 @@ export default class MoreMenu extends Component {
 
 	//Use this.props.editor.setContent to replace the contents of the composer textarea
 	handleClick = e => {
-		this.props.getComposer().editor.setContent(this.globalConfig.get('htmlTemplate'));
+		this.props.getComposer().setContent(this.globalConfig.get('htmlTemplate'));
 	};
 
 	render() {
