@@ -1,6 +1,6 @@
 # Interact with Zimbra Composer using Zimlets - Signature Template
 
-This article introduces you to the new Zimlet Slow `editor`. This Zimlet Slot allows you to write Zimlets that interact with Zimbra's composer component. The composer is based on TinyMCE and is used when writing new emails and when configuring email signatures in preferences.
+This article introduces you to the new Zimlet Slot `composer`. This Zimlet Slot allows you to write Zimlets that interact with Zimbra's composer component. The composer is based on TinyMCE and is used when writing new emails and when configuring email signatures in preferences.
 
 This article will show you how to write a simple Signature Template Zimlet. The Signature Template Zimlet offers a globally configured email signature template that users can use to configure their email signature. This way all users in an organization can have a uniform signature.
 
