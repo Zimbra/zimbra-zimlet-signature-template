@@ -24,7 +24,7 @@ This article will show you how to write a simple Signature Template Zimlet. The 
 This Zimlet uses Global Zimlet Configuration as described in https://github.com/Zimbra/zimbra-zimlet-configuration. To install this Zimlet:
 
       cd /tmp
-      wget https://github.com/Zimbra/zimbra-zimlet-signature-template/download/0.0.2/zimbra-zimlet-signature-template.zip
+      wget https://github.com/Zimbra/zimbra-zimlet-signature-template/download/0.0.3/zimbra-zimlet-signature-template.zip
       zmzimletctl deploy /tmp/zimbra-zimlet-signature-template.zip
 
 To make changes to the configuration one first gets the configuration template:
@@ -53,7 +53,7 @@ The `htmlTemplate` is a base64 encoded HTML template for use with the email sign
 Please note that it is not possible to side-load config_template.xml files. So you must always deploy an actual Zimlet to read the configuration properties.
 
 A pre packed version of the example Zimlet used in this article can be downloaded from 
-https://github.com/Zimbra/zimbra-zimlet-signature-template/download/0.0.2/zimbra-zimlet-signature-template.zip.
+https://github.com/Zimbra/zimbra-zimlet-signature-template/download/0.0.3/zimbra-zimlet-signature-template.zip.
 
 See: https://github.com/Zimbra/zimbra-zimlet-configuration.
 
