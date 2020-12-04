@@ -9,14 +9,12 @@ export default function Zimlet(context) {
 	const { plugins } = context;
 	const exports = {};
    
-   //moreMenu stores a Zimlet menu item. We pass context to it here
+        //moreMenu stores a Zimlet menu item. We pass context to it here
 	const moreMenu = createMore(context);
-
 	
 	exports.init = function init() {
 		//Here we load the moreMenu Zimlet item into the UI slot:
 		plugins.register('slot::composer', moreMenu);
-
 	};
 
 	return exports;
