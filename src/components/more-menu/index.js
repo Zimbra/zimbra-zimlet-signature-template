@@ -4,7 +4,7 @@ import { withText } from 'preact-i18n';
 
 @withIntl()
 @withText({
-    apply: 'zimbra-zimlet-signature-template.title'
+    title: 'zimbra-zimlet-signature-template.title'
 })
 export default class MoreMenu extends Component {
     constructor(props) {
@@ -13,10 +13,10 @@ export default class MoreMenu extends Component {
 
         //Get all zimlets
         const zimlets = this.zimletContext.getAccount().zimlets;
-		
+
         this.globalConfig = new Map();
-        
-		//Get the current zimlet
+
+        //Get the current zimlet
         const zimlet = zimlets.zimlet.find(zimlet => zimlet.zimlet[0].name === "zimbra-zimlet-signature-template");
 
         //Add zimlet configuration properties to an ES6 Map
@@ -32,16 +32,16 @@ export default class MoreMenu extends Component {
 
     //Use this.props.editor.setContent to replace the contents of the composer textarea
     handleClick = e => {
-        this.props.editor.setContent(this.globalConfig.get('htmlTemplate'));
+        this.props.composer.editor.setContent(this.globalConfig.get('htmlTemplate'));
     }
 
     render() {
         //Only show the Zimlet in the UI where we want it.
 
-        if (this.props.editorType == "composer") {
-            //We are in the email composer
-        }
-        else {
+        //if (this.props.composer.editor.id.indexOf('zimbra-composer') > -1) {
+        //We are in the email composer
+        //}
+        if (this.props.composer.editor.id.indexOf('zimbra-compact-editor') > -1) {
             //We are in the signature composer, let's show the button
             return (
                 <div style="float:right">
