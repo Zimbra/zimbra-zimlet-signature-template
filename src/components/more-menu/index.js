@@ -12,15 +12,17 @@ export default class MoreMenu extends Component {
         this.zimletContext = props.children.context;
 
         //Get all zimlets
-        const zimlets = this.zimletContext.getAccount().zimlets
+        const zimlets = this.zimletContext.getAccount().zimlets;
+		
         this.globalConfig = new Map();
-        //Get the current zimlet
+        
+		//Get the current zimlet
         const zimlet = zimlets.zimlet.find(zimlet => zimlet.zimlet[0].name === "zimbra-zimlet-signature-template");
 
         //Add zimlet configuration properties to an ES6 Map
         if (zimlet) {
             const globalConfig = zimlet.zimletConfig[0].global[0].property || [];
-            for (var i = 0; i < globalConfig.length; i++) {
+            for (let i = 0; i < globalConfig.length; i++) {
                 this.globalConfig.set(globalConfig[i].name, window.atob(globalConfig[i].content));
             };
         }
@@ -28,9 +30,9 @@ export default class MoreMenu extends Component {
         //now you can get a property value by doing: this.globalConfig.get('name-of-property')
     };
 
-    //Use window.parent.tinyMCE.activeEditor.setContent to replace the contents of the composer textarea
+    //Use this.props.editor.setContent to replace the contents of the composer textarea
     handleClick = e => {
-        window.parent.tinyMCE.activeEditor.setContent(this.globalConfig.get('htmlTemplate'));
+        this.props.editor.setContent(this.globalConfig.get('htmlTemplate'));
     }
 
     render() {
