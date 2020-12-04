@@ -1,6 +1,6 @@
 # Interact with Zimbra Composer using Zimlets - Signature Template
 
-This article introduces you to the new Zimlet Slot `editor`. This Zimlet Slot allows you to write Zimlets that interact with Zimbra's composer component. The composer is based on TinyMCE and is used when writing new emails and when configuring email signatures in preferences.
+This article introduces you to the new Zimlet Slow `editor`. This Zimlet Slot allows you to write Zimlets that interact with Zimbra's composer component. The composer is based on TinyMCE and is used when writing new emails and when configuring email signatures in preferences.
 
 This article will show you how to write a simple Signature Template Zimlet. The Signature Template Zimlet offers a globally configured email signature template that users can use to configure their email signature. This way all users in an organization can have a uniform signature.
 
@@ -24,7 +24,7 @@ This article will show you how to write a simple Signature Template Zimlet. The 
 This Zimlet uses Global Zimlet Configuration as described in https://github.com/Zimbra/zimbra-zimlet-configuration. To install this Zimlet:
 
       cd /tmp
-      wget https://github.com/Zimbra/zimbra-zimlet-signature-template/download/0.0.1/zimbra-zimlet-signature-template.zip
+      wget https://github.com/Zimbra/zimbra-zimlet-signature-template/download/0.0.2/zimbra-zimlet-signature-template.zip
       zmzimletctl deploy /tmp/zimbra-zimlet-signature-template.zip
 
 To make changes to the configuration one first gets the configuration template:
@@ -68,7 +68,7 @@ import { withText } from 'preact-i18n';
 
 @withIntl()
 @withText({
-    apply: 'zimbra-zimlet-signature-template.title'
+    title: 'zimbra-zimlet-signature-template.title'
 })
 export default class MoreMenu extends Component {
     constructor(props) {
@@ -76,15 +76,17 @@ export default class MoreMenu extends Component {
         this.zimletContext = props.children.context;
 
         //Get all zimlets
-        const zimlets = this.zimletContext.getAccount().zimlets
+        const zimlets = this.zimletContext.getAccount().zimlets;
+
         this.globalConfig = new Map();
+
         //Get the current zimlet
         const zimlet = zimlets.zimlet.find(zimlet => zimlet.zimlet[0].name === "zimbra-zimlet-signature-template");
 
         //Add zimlet configuration properties to an ES6 Map
         if (zimlet) {
             const globalConfig = zimlet.zimletConfig[0].global[0].property || [];
-            for (var i = 0; i < globalConfig.length; i++) {
+            for (let i = 0; i < globalConfig.length; i++) {
                 this.globalConfig.set(globalConfig[i].name, window.atob(globalConfig[i].content));
             };
         }
@@ -92,18 +94,18 @@ export default class MoreMenu extends Component {
         //now you can get a property value by doing: this.globalConfig.get('name-of-property')
     };
 
-    //Use window.parent.tinyMCE.activeEditor.setContent to replace the contents of the composer textarea
+    //Use this.props.editor.setContent to replace the contents of the composer textarea
     handleClick = e => {
-        window.parent.tinyMCE.activeEditor.setContent(this.globalConfig.get('htmlTemplate'));
+        this.props.composer.editor.setContent(this.globalConfig.get('htmlTemplate'));
     }
 
     render() {
         //Only show the Zimlet in the UI where we want it.
 
-        if (this.props.editorType == "composer") {
-            //We are in the email composer
-        }
-        else {
+        //if (this.props.composer.editor.id.indexOf('zimbra-composer') > -1) {
+        //We are in the email composer
+        //}
+        if (this.props.composer.editor.id.indexOf('zimbra-compact-editor') > -1) {
             //We are in the signature composer, let's show the button
             return (
                 <div style="float:right">
@@ -113,47 +115,6 @@ export default class MoreMenu extends Component {
     }
 }
 ```
-## Advanced use of composer
-
-The Zimbra composer is based on TinyMCE. This means you can use TinyMCE's comprehensive API to do advanced tasks. 
-
-This code snippet shows how to add an onkeyup event handler and get the last typed word:
-
-```javascript
-export default class MoreMenu extends Component {
-    constructor(props) {
-        super(props);
-        this.zimletContext = props.children.context;
-
-        window.parent.tinyMCE.activeEditor.on('keyup', function (e) {
-                var selRng = window.parent.tinyMCE.activeEditor.selection.getRng();
-                window.parent.tinyMCE.activeEditor.selection.setRng(selRng);
-        
-                let content = window.parent.tinyMCE.activeEditor.selection;
-                let contentText = content.getSel().focusNode.data;
-                try {
-                    let contentTillCaret = contentText.substring(0, selRng.startOffset);
-                    let lastTypedWord = this.lastWord(contentTillCaret);
-                    //do something here
-                } catch (err) { console.log(err) };
-        }.bind(this));
-    }
-```
-
-This code snippet shows how to replace the last typed word:
-
-```javascript
-    
-    replaceWord = (myNewWord) => {  
-        window.parent.tinyMCE.activeEditor.selection.getSel().modify('extend', 'backward', 'word');
-        window.parent.tinyMCE.activeEditor.selection.setContent(myNewWord);
-    }
-
-```
-
-For more examples, please check: https://www.tiny.cloud/docs/api/tinymce/tinymce.editor/
-
-
 
 ## References
 
