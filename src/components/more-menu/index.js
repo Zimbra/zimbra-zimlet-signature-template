@@ -32,7 +32,7 @@ export default class MoreMenu extends Component {
 		//now you can get a property value by doing: this.globalConfig.get('name-of-property')
 	}
 
-	//Use this.props.editor.setContent to replace the contents of the composer textarea
+	//Use this.props.getComposer().setContent to replace the contents of the composer textarea
 	handleClick = e => {
 		this.props.getComposer().setContent(this.globalConfig.get('htmlTemplate'));
 	};
