@@ -53,7 +53,7 @@ The `htmlTemplate` is a base64 encoded HTML template for use with the email sign
 Please note that it is not possible to side-load config_template.xml files. So you must always deploy an actual Zimlet to read the configuration properties.
 
 A pre packed version of the example Zimlet used in this article can be downloaded from 
-https://github.com/Zimbra/zimbra-zimlet-signature-template/download/0.0.3/zimbra-zimlet-signature-template.zip.
+https://github.com/Zimbra/zimbra-zimlet-signature-template/releases/download/0.0.3/zimbra-zimlet-signature-template.zip.
 
 See: https://github.com/Zimbra/zimbra-zimlet-configuration.
 
