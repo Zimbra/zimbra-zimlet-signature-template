@@ -24,7 +24,7 @@ This article will show you how to write a simple Signature Template Zimlet. The 
 This Zimlet uses Global Zimlet Configuration as described in https://github.com/Zimbra/zimbra-zimlet-configuration. To install this Zimlet:
 
       cd /tmp
-      wget https://github.com/Zimbra/zimbra-zimlet-signature-template/download/0.0.3/zimbra-zimlet-signature-template.zip
+      wget https://github.com/Zimbra/zimbra-zimlet-signature-template/releases/download/0.0.3/zimbra-zimlet-signature-template.zip
       zmzimletctl deploy /tmp/zimbra-zimlet-signature-template.zip
 
 To make changes to the configuration one first gets the configuration template:
