@@ -1,5 +1,9 @@
 {
 	"zimbra-zimlet-signature-template": {
 		"title": "Signature Template"
+	},
+	"zimlet": {
+		"description": "Signature Template",
+		"label": "Signature Template"
 	}
 }
